@@ -16,7 +16,7 @@ class Weather {
 
   getCityInfos = async (lat, lon) => {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${this.apikey}&units=imperial`
+      `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${this.apikey}&units=imperial`
     );
 
     const responseData = await response.json();
