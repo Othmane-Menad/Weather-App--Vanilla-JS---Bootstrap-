@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/5/flatly/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-md-9 mx-auto">
+          <h2 class="text-center text-primary fw-bold my-3">
+            Search by City name
+          </h2>
+          <div class="form-groupe">
+            <input
+              type="text"
+              class="form-control form-control-lg shadow-none"
+              id="cityInput"
+              placeholder="Enter city name"
+            />
+          </div>
+          <button class="btn btn-primary text-info fw-bold my-3" id="search">
+            Find City
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="result" class="container p-3">
+      <div class="row">
+        <div class="mx-auto col-md-6 text-center bg-primary rounded">
+          <h2 id="cityName" class="text-white mt-2"></h2>
+          <h3 id="desc" class="text-white"></h3>
+          <h3 id="temp" class="text-white"></h3>
+          <img id="icon" class="text-white" src="" alt="" />
+          <ul class="list-group">
+            <li class="list-group-item" id="feelsLike"></li>
+            <li class="list-group-item" id="humidity"></li>
+            <li class="list-group-item" id="wind"></li>
+          </ul>
+          <h5 id="time" class="text-white m-2"></h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- info's  -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="weather.js"></script>
+    <script src="ui.js"></script>
+    <script src="storage.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
