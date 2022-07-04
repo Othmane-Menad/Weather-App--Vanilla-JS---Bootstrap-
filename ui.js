@@ -36,7 +36,6 @@ class UI {
   };
 
   paint = (data) => {
-    console.log(data);
     this.displayData();
     this.cityName.textContent = data.name;
     this.desc.textContent = data.weather[0].description;
