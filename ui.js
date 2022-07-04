@@ -36,10 +36,11 @@ class UI {
   };
 
   paint = (data) => {
+    console.log(data);
     this.displayData();
     this.cityName.textContent = data.name;
     this.desc.textContent = data.weather[0].description;
-    this.temp.textContent = `${data.main.temp} F`;
+    this.temp.textContent = `${data.main.temp} °C`;
     this.icon.setAttribute(
       "src",
       `http://openweathermap.org/img/wn/10n@2x.png`
