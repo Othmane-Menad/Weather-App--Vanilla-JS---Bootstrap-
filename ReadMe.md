@@ -5,7 +5,6 @@ Built using "**Vanilla JS"** and "**Bootsrap 5"** <br/>
 
 ---
 
-3 tries to guess the correct number <br/>
-the correct number is randomly generated <br/>
+<br/>
 
 ![scrn](./scnr.png)
