@@ -12,29 +12,49 @@ window.addEventListener("DOMContentLoaded", ui.hideData());
 // an async func to get data
 const getApiData = async (cityName) => {
   const coord = await weather.getCoord(cityName);
-  console.log(coord);
+  // console.log(coord);
   // const city = await weather.getCityInfos(coord.lat, coord.lon);
   return coord;
 };
 
+let id = 0;
+const cities = []; // to link every id with lat and lon
+
 getApiData("Oran").then((data) => {
   data.forEach((element) => {
+    const city = {}; // need to be in the forEach to work
+    city["id"] = id;
+    city["nom"] = element.lon;
+    cities.push(city);
     const link = document.createElement("A");
     link.className = "list-group-item list-group-item-action";
-    link.id = "link";
+    link.id = `${id}`; //for selecting the right city object in return
     link.setAttribute("href", "#");
     link.setAttribute("data-bs-dismiss", "modal");
     link.ariaLabel = "modal";
 
     link.innerText = element.name + ",  " + element.country;
     modalBody.appendChild(link);
+    id++;
   });
 });
 
+// function findId(cities, id) {
+//   const foundId = cities.forEach((element) => {
+//     if (element.id === parseInt(id)) return element;
+//   });
+// }
+
 modalBody.addEventListener("click", modalexit);
 
+//returning an object with lan and lon data
+
 function modalexit(e) {
-  console.log(e.target);
+  const foundId = cities.find((element) => {
+    return element.id === parseInt(e.target.id);
+  });
+  console.log(foundId);
+  e.preventDefault();
 }
 
 // const getCityInfos = () => {
