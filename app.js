@@ -1,5 +1,6 @@
 const input = document.querySelector("#cityInput");
 const searchBtn = document.querySelector("#search");
+const modalBody = document.querySelector(".modal-body");
 const weather = new Weather();
 const ui = new UI();
 // const storage = new STORAGE();
@@ -11,26 +12,47 @@ window.addEventListener("DOMContentLoaded", ui.hideData());
 // an async func to get data
 const getApiData = async (cityName) => {
   const coord = await weather.getCoord(cityName);
-
-  const city = await weather.getCityInfos(coord.lat, coord.lon);
-  return city;
+  console.log(coord);
+  // const city = await weather.getCityInfos(coord.lat, coord.lon);
+  return coord;
 };
 
-const getCityInfos = () => {
-  const inputCityName = input.value.trim();
-  if (inputCityName.length == 0) {
-    window.alert("Please enter a City name");
-    return false;
-  }
-  getApiData(inputCityName)
-    .then((data) => {
-      ui.paint(data);
-    })
-    .catch((err) => console.log(err));
-  input.value = "";
-};
+getApiData("Oran").then((data) => {
+  data.forEach((element) => {
+    const link = document.createElement("A");
+    link.className = "list-group-item list-group-item-action";
+    link.id = "link";
+    link.setAttribute("href", "#");
+    link.setAttribute("data-bs-dismiss", "modal");
+    link.ariaLabel = "modal";
 
-searchBtn.addEventListener("click", getCityInfos);
+    link.innerText = element.name + ",  " + element.country;
+    modalBody.appendChild(link);
+  });
+});
+
+modalBody.addEventListener("click", modalexit);
+
+function modalexit(e) {
+  console.log(e.target);
+}
+
+// const getCityInfos = () => {
+//   const inputCityName = input.value.trim();
+//   if (inputCityName.length == 0) {
+//     window.alert("Please enter a City name");
+//     return false;
+//   }
+//   getApiData(inputCityName)
+//     .then((data) => {
+//       console.log(data);
+//       ui.paint(data);
+//     })
+//     .catch((err) => console.log(err));
+//   input.value = "";
+// };
+
+// searchBtn.addEventListener("click", getCityInfos);
 
 // const addList = () => {
 //   const weather = new Weather(input.value);

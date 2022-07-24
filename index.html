@@ -26,9 +26,47 @@
               placeholder="Enter city name"
             />
           </div>
-          <button class="btn btn-primary text-info fw-bold my-3" id="search">
+          <button
+            class="btn btn-primary text-info fw-bold my-3"
+            id="search"
+            data-bs-toggle="modal"
+            data-bs-target="#activeModal"
+          >
             Find City
           </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="activeModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cities Liste</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>

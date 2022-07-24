@@ -11,12 +11,13 @@ class Weather {
 
     const responseData = await response.json();
 
-    return responseData[0];
+    return responseData;
   };
 
   getCityInfos = async (lat, lon) => {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${this.apikey}&units=metric`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,hourly,minutely,alerts&units=metric&appid=${this.apikey}`
+      // `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${this.apikey}&units=metric`
     );
 
     const responseData = await response.json();
