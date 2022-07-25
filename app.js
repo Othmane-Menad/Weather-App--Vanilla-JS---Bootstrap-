@@ -24,7 +24,8 @@ getApiData("Oran").then((data) => {
   data.forEach((element) => {
     const city = {}; // need to be in the forEach to work
     city["id"] = id;
-    city["nom"] = element.lon;
+    city["lat"] = element.lat;
+    city["lon"] = element.lon;
     cities.push(city);
     const link = document.createElement("A");
     link.className = "list-group-item list-group-item-action";
@@ -53,8 +54,17 @@ function modalexit(e) {
   const foundId = cities.find((element) => {
     return element.id === parseInt(e.target.id);
   });
-  console.log(foundId);
+
+  getData(foundId.lat, foundId.lon).then((element) => {
+    console.log(element.daily[0]);
+  });
+
   e.preventDefault();
+}
+
+async function getData(lat, lon) {
+  const data = await weather.getCityInfos(lat, lon);
+  return data;
 }
 
 // const getCityInfos = () => {
