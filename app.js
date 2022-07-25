@@ -56,7 +56,6 @@ function modalexit(e) {
   });
 
   getData(foundId.lat, foundId.lon).then((element) => {
-    console.log(element);
     ui.paint(element);
   });
 
