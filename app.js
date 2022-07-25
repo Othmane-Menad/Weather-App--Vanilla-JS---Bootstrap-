@@ -20,32 +20,42 @@ const getApiData = async (cityName) => {
 let id = 0;
 const cities = []; // to link every id with lat and lon
 
-getApiData("Oran").then((data) => {
-  data.forEach((element) => {
-    const city = {}; // need to be in the forEach to work
-    city["id"] = id;
-    city["lat"] = element.lat;
-    city["lon"] = element.lon;
-    cities.push(city);
-    const link = document.createElement("A");
-    link.className = "list-group-item list-group-item-action";
-    link.id = `${id}`; //for selecting the right city object in return
-    link.setAttribute("href", "#");
-    link.setAttribute("data-bs-dismiss", "modal");
-    link.ariaLabel = "modal";
+function getCityInfos() {
+  const inputCityName = input.value.trim();
+  if (inputCityName.length == 0) {
+    window.alert("Please enter a City name");
+    return false;
+  }
+  getApiData(inputCityName)
+    .then((data) => {
+      data.forEach((element) => {
+        const city = {}; // need to be in the forEach to work
+        city["id"] = id;
+        city["lat"] = element.lat;
+        city["lon"] = element.lon;
+        cities.push(city);
+        const link = document.createElement("A");
+        link.className = "list-group-item list-group-item-action";
+        link.id = `${id}`; //for selecting the right city object in return
+        link.setAttribute("href", "#");
+        link.setAttribute("data-bs-dismiss", "modal");
+        link.ariaLabel = "modal";
 
-    link.innerText = element.name + ",  " + element.country;
-    modalBody.appendChild(link);
-    id++;
-  });
-});
+        link.innerText = element.name + ",  " + element.country;
+        modalBody.appendChild(link);
+        id++;
+      });
+    })
+    .catch((err) => console.log(err));
+  input.value = "";
+}
 
 // function findId(cities, id) {
 //   const foundId = cities.forEach((element) => {
 //     if (element.id === parseInt(id)) return element;
 //   });
 // }
-
+searchBtn.addEventListener("click", getCityInfos);
 modalBody.addEventListener("click", modalexit);
 
 //returning an object with lan and lon data
@@ -66,21 +76,6 @@ async function getData(lat, lon) {
   const data = await weather.getCityInfos(lat, lon);
   return data.daily[0];
 }
-
-// const getCityInfos = () => {
-//   const inputCityName = input.value.trim();
-//   if (inputCityName.length == 0) {
-//     window.alert("Please enter a City name");
-//     return false;
-//   }
-//   getApiData(inputCityName)
-//     .then((data) => {
-//       console.log(data);
-//       ui.paint(data);
-//     })
-//     .catch((err) => console.log(err));
-//   input.value = "";
-// };
 
 // searchBtn.addEventListener("click", getCityInfos);
 
