@@ -56,7 +56,8 @@ function modalexit(e) {
   });
 
   getData(foundId.lat, foundId.lon).then((element) => {
-    console.log(element.daily[0]);
+    console.log(element);
+    ui.paint(element);
   });
 
   e.preventDefault();
@@ -64,7 +65,7 @@ function modalexit(e) {
 
 async function getData(lat, lon) {
   const data = await weather.getCityInfos(lat, lon);
-  return data;
+  return data.daily[0];
 }
 
 // const getCityInfos = () => {
