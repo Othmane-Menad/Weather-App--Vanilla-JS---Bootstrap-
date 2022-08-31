@@ -34,7 +34,7 @@ function getCityInfos() {
         city["lat"] = element.lat;
         city["lon"] = element.lon;
         cities.push(city);
-        const link = document.createElement("A");
+        const link = document.createElement("a");
         link.className = "list-group-item list-group-item-action";
         link.id = `${id}`; //for selecting the right city object in return
         link.setAttribute("href", "#");
@@ -68,6 +68,7 @@ function modalexit(e) {
   getData(foundId.lat, foundId.lon).then((element) => {
     ui.paint(element);
   });
+  modalBody.innerHTML = "";
 
   e.preventDefault();
 }
