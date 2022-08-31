@@ -28,6 +28,7 @@ function getCityInfos() {
   }
   getApiData(inputCityName)
     .then((data) => {
+      modalBody.innerHTML = "";
       data.forEach((element) => {
         const city = {}; // need to be in the forEach to work
         city["id"] = id;
@@ -68,7 +69,6 @@ function modalexit(e) {
   getData(foundId.lat, foundId.lon).then((element) => {
     ui.paint(element);
   });
-  modalBody.innerHTML = "";
 
   e.preventDefault();
 }
