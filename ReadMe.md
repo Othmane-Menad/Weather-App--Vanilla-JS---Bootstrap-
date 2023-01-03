@@ -2,7 +2,6 @@
 
 A weather web app that provides wind information, humidity, current time, and weather in Celsius.
 
-![GitHub](https://img.shields.io/github/license/Othmane-Menad/Weather-App--Vanilla-JS---Bootstrap-)
 
 ## Table of Contents
 
