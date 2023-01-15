@@ -36,15 +36,63 @@ class UI {
     return `${day} ${date} ${month} ${year}`;
   };
 
+  setIcon = (desc) => {
+    let description = [
+      "few clouds",
+      "scattered clouds",
+      "broken clouds",
+      "shower rain",
+      "clear sky",
+      "thunderstorm",
+      "snow",
+      "mist",
+    ];
+
+    let index = description.findIndex((val) => val === desc);
+    if (index !== -1) {
+      switch (index) {
+        case 0:
+        case 1:
+        case 2:
+          this.icon.setAttribute("src", "Assets/images/few-clouds-ico.svg");
+          break;
+        case 3:
+          this.icon.setAttribute("src", "Assets/images/rain-ico.svg");
+          break;
+        case 4:
+          this.icon.setAttribute("src", "Assets/images/clear-sky-ico.svg");
+          break;
+        case 5:
+          this.icon.setAttribute("src", "Assets/images/thunderstorm-ico.svg");
+          break;
+        case 6:
+          this.icon.setAttribute("src", "Assets/images/snow-ico.svg");
+          break;
+        case 7:
+          this.icon.setAttribute("src", "Assets/images/mist-ico.svg");
+          break;
+        default:
+          break;
+      }
+    } else
+      this.icon.setAttribute(
+        "src",
+        `http://openweathermap.org/img/wn/10n@2x.png`
+        // `http://openweathermap.org/img/wn/10n@2x.png`
+      );
+  };
+
   paint = (data) => {
     this.displayData();
     this.cityName.textContent = data.name;
     this.desc.textContent = data.weather[0].description;
     this.temp.textContent = `${data.temp.day} °C`;
-    this.icon.setAttribute(
-      "src",
-      `http://openweathermap.org/img/wn/10n@2x.png`
-    );
+    this.setIcon(data.weather[0].description);
+    // this.icon.setAttribute(
+    //   "src",
+    //   `http://openweathermap.org/img/wn/10n@2x.png`
+    //   // `http://openweathermap.org/img/wn/10n@2x.png`
+    // );
     // this.feelsLike.textContent = `Feels like: ${data.main.feels_like}`;
     this.humidity.textContent = `Humidity: ${data.humidity}`;
     this.wind.textContent = `Wind information: deg: ${data.wind_deg} | speed: ${data.wind_speed}`;
